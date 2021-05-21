@@ -3,5 +3,7 @@
 <file name="/Users/lilim/EAP-7.2-Projects/jboss-eap-quickstarts/helloworld/src/main/java/org/jboss/as/quickstarts/helloworld/HelloService.java">
 </file>
 <file name="/Users/lilim/EAP-7.2-Projects/jboss-eap-quickstarts/helloworld/src/main/java/org/jboss/as/quickstarts/helloworld/HelloWorldServlet.java">
+<error line="41" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="44" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
 </file>
 </checkstyle>

@@ -32,14 +32,16 @@ public class HelloWorldServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String name = (String) req.getParameter("name");
 
-        if (name != null) {
+        System.out.println("======== Get shared session ======== " + (String) session.getAttribute("replica"));
+
+        if ((name != null) && session.getAttribute("replica") == null)  {
                 SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss");
                 name = name + sdf.format(new Date());
 
-                if(session.getAttribute("replica") == null) {
-                        System.out.println("======== Set session ======== " + name);
-                        session.setAttribute("replica", name);
-                }
+                
+                System.out.println("======== Set session ======== " + name);
+                session.setAttribute("replica", name);
+                
 
         }
 
