@@ -38,11 +38,8 @@ public class HelloWorldServlet extends HttpServlet {
                 SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss");
                 name = name + sdf.format(new Date());
 
-                
                 System.out.println("======== Set session ======== " + name);
                 session.setAttribute("replica", name);
-                
-
         }
 
         PrintWriter writer = resp.getWriter();
