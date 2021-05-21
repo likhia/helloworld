@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2021 JBoss by Red Hat</copyright>
     <item>
-      <title>File: 2,
+      <title>File: 3,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -44,6 +44,20 @@ under the License.
             </tr>
           </thead>
           <tbody>
+                          <tr>
+                <td>
+                  <a href="https://developers.redhat.com/quickstarts/eap/helloworld//checkstyle.html#org.jboss.as.quickstarts.helloworld.CountObject.java">org/jboss/as/quickstarts/helloworld/CountObject.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
                           <tr>
                 <td>
                   <a href="https://developers.redhat.com/quickstarts/eap/helloworld//checkstyle.html#org.jboss.as.quickstarts.helloworld.HelloService.java">org/jboss/as/quickstarts/helloworld/HelloService.java</a>

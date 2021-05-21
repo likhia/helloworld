@@ -33,6 +33,16 @@ public class HelloWorldServlet extends HttpServlet {
         String name = (String) req.getParameter("name");
 
         System.out.println("======== Get shared session ======== " + (String) session.getAttribute("replica"));
+        System.out.println("======== Get count session ======== " + session.getAttribute("count"));
+
+        CountObject count = (CountObject) session.getAttribute("count");
+        if(count != null) {
+            count.increment();
+        } else {
+            count = new CountObject();
+        }
+
+        session.setAttribute("count", count);
 
         if ((name != null) && session.getAttribute("replica") == null)  {
                 SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss");
@@ -44,7 +54,7 @@ public class HelloWorldServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
         writer.println(PAGE_HEADER);
-        writer.println("<h1>" + helloService.createHelloMessage((String) session.getAttribute("replica")) + "</h1>");
+        writer.println("<h1>" + helloService.createHelloMessage((String) session.getAttribute("replica")) + ":" + count.getCount() + "</h1>");
         writer.println(PAGE_FOOTER);
         writer.close();
     }
