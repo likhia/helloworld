@@ -2,7 +2,6 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_10_0.xsd">
    <replication-config>
-      <replication-trigger>ACCESS</replication-trigger>
       <replication-granularity>SESSION</replication-granularity>
     </replication-config>
 </jboss-web>

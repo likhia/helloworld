@@ -1,15 +1,10 @@
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <!-- One of the ways of activating REST Services is adding these lines.
-         The server is responsible for adding the corresponding servlet automatically.
-         The class org.jboss.as.quickstarts.html5rest.HelloWorld class has the
-         annotation @Path("/") to receive the REST invocation -->
-    <distributable />
-    <!--
-     <servlet-mapping>
-        <servlet-name>javax.ws.rs.core.Application</servlet-name>
-        <url-pattern>/hello/*</url-pattern>
-    </servlet-mapping>
-    -->
+<?xml version="1.0"?>
+<web-app  xmlns="http://java.sun.com/xml/ns/j2ee"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+                              http://java.sun.com/xml/ns/j2ee/web-app_3_0.xsd"
+          version="3.0">
+
+      <distributable/>
+
 </web-app>
