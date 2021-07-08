@@ -14,9 +14,14 @@ import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 @SuppressWarnings("serial")
 @WebServlet("/HelloWorld")
 public class HelloWorldServlet extends HttpServlet {
+
+    static final Logger logger = LogManager.getLogger(HelloWorldServlet.class.getName());
 
     static String PAGE_HEADER = "<html><head><title>Test Session Replication</title></head><body>";
 
@@ -32,8 +37,8 @@ public class HelloWorldServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String name = (String) req.getParameter("name");
 
-        System.out.println("======== Get shared session ======== " + (String) session.getAttribute("replica"));
-        System.out.println("======== Get count session ======== " + session.getAttribute("count"));
+        logger.error("======== Get shared session ======== " + (String) session.getAttribute("replica"));
+        logger.error("======== Get count session ======== " + session.getAttribute("count"));
 
         CountObject count = (CountObject) session.getAttribute("count");
         if(count != null) {
@@ -48,7 +53,7 @@ public class HelloWorldServlet extends HttpServlet {
                 SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss");
                 name = name + sdf.format(new Date());
 
-                System.out.println("======== Set session ======== " + name);
+                logger.error("======== Set session ======== " + name);
                 session.setAttribute("replica", name);
         }
 

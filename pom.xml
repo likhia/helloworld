@@ -4,7 +4,6 @@
     Copyright 2015, Red Hat, Inc. and/or its affiliates, and individual
     contributors by the @authors tag. See the copyright.txt in the
     distribution for a full listing of individual contributors.
-
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
@@ -18,35 +17,85 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jboss.eap.quickstarts</groupId>
-        <artifactId>quickstart-parent</artifactId>
-        <!--
-        Maintain separation between the artifact id and the version to help prevent
-        merge conflicts between commits changing the GA and those changing the V.
-        -->
-        <version>7.3.0.GA</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+    <groupId>org.jboss.as.quickstarts.helloworld</groupId>
+    <version>1.0.0</version>
     <artifactId>helloworld</artifactId>
     <packaging>war</packaging>
     <name>Quickstart: helloworld</name>
     <description>Helloworld</description>
-
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
     
+    <properties>
+        <root.dir>${project.basedir}</root.dir>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <product.version>7.2.0.GA</product.version>
+        <!-- A base list of dependency and plug-in version used in the various quick starts. -->
+        <version.wildfly.maven.plugin>2.0.0.Final</version.wildfly.maven.plugin>
+        <version.org.wildfly.checkstyle-config>1.0.7.Final</version.org.wildfly.checkstyle-config>
+        <version.org.wildfly.quickstarts.documentation.plugin>2.0.0.Beta1</version.org.wildfly.quickstarts.documentation.plugin>
+        <!-- other plug-in versions -->
+        <version.jaxws-tools-maven-plugin>1.2.2.Final</version.jaxws-tools-maven-plugin>
+        <!-- Explicitly declaring the source encoding eliminates the following
+            message: [WARNING] Using platform encoding (UTF-8 actually) to copy
+            filtered resources, i.e. build is platform dependent! -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Version of BOMs
+        note: a SNAPSHOT version *requires* checkout of BOMs at https://github.com/jbossas/eap-boms and build through "mvn clean install"
+        -->
+        <version.server.bom>7.2.0.GA</version.server.bom>
+
+        <!-- Versions of dependencies on server's core -->
+        <version.commons-io>2.5.0.redhat-3</version.commons-io>
+        <version.org.apache.httpcomponents.httpclient>4.5.2.redhat-2</version.org.apache.httpcomponents.httpclient>
+        <version.org.slf4j>1.7.22.redhat-2</version.org.slf4j>
+       
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.jboss.eap</groupId>
+                <artifactId>wildfly-ejb-client-bom</artifactId>
+                <version>${version.server.bom}</version>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.eap</groupId>
+                <artifactId>wildfly-jms-client-bom</artifactId>
+                <version>${version.server.bom}</version>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${version.org.apache.httpcomponents.httpclient}</version>
+            </dependency>
+            <!-- JBoss distributes a complete set of Java EE APIs including a Bill
+                of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
+                of artifacts. We use this here so that we always get the correct versions
+                of artifacts. Here we use the jboss-eap-javaee8-with-tools stack (you can
+                read this as the JBoss stack of the Java EE APIs, with some extras tools
+                for your project, such as Arquillian for testing) -->
+            <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-eap-javaee8-with-tools</artifactId>
+                <version>${version.server.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
 
         <!-- Import the CDI API, we use provided scope as the API is included in WildFly -->
         <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -65,6 +114,29 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.14.1</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.14.1</version>
+          </dependency>
+
     </dependencies>
 
+    <build>
+        <!-- Set the name of the WAR, used as the context root when the app is deployed. -->
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven.plugin}</version>
+            </plugin>
+            
+        </plugins>
+    </build>
 </project>
