@@ -1,3 +1,7 @@
+## Build the war file 
+
+mvn clean package
+
 include::../shared-doc/attributes.adoc[]
 
 = helloworld: Helloworld Example
